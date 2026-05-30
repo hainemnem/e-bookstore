@@ -5,8 +5,9 @@ import SecondCom from './components/SecondCom';
 function App() {
 
   const rows = [
-    {row:"Hi row 1"},
-    {row:"Hi row 2"}
+    {row_desc:"Hi row 1"},
+    {row_desc:"Hi row 2"},
+    {row_desc:"Hi row 3"}
   ]
   
   return (
@@ -24,8 +25,13 @@ function App() {
         >
           Learn React
         </a>
-        <SecondCom input={rows[0].row}/>
-        <SecondCom input={rows[1].row}/>
+        {
+          rows.map(row => (
+            <SecondCom input={row.row_desc}/>
+          )
+
+          )
+        }
       </header>
     </div>
   );
