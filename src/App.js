@@ -5,19 +5,13 @@ import SecondCom from './components/SecondCom';
 import UserInputForm from './components/UserInputForm';
 function App() {
 
+  const [addUserRow, setaddUserRow] = useState(false)
+
   const [rows, setRows] = useState ([
     {row_column: 1, row_desc:"Hi row 1"},
     {row_column: 2, row_desc:"Hi row 2"},
     {row_column: 3, row_desc:"Hi row 3"}
   ])
-
-  const addNewRow = () => {
-    const newRow = {
-      row_column: rows.length + 1,
-      row_desc: "New Row"
-    };
-    setRows(rows => [...rows,newRow])
-  }
 
   const addNewRowByUser = (content) => {
     const newRow = {
@@ -57,10 +51,14 @@ function App() {
           )
           )
         }
-        <button onClick={addNewRow}>
-          Add a new row 
-        </button>
-        <UserInputForm input={addNewRowByUser}/>
+        <button onClick={() => setaddUserRow(!addUserRow)}>
+          {addUserRow ? "Close form":"User input form"}
+        </button> 
+        {
+          addUserRow && <UserInputForm input={addNewRowByUser}/>
+        }
+        
+        
       </header>
     </div>
   );
