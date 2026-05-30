@@ -6,13 +6,14 @@ import UserInputForm from './components/UserInputForm';
 function App() {
 
   const [rows, setRows] = useState ([
-    {row_desc:"Hi row 1"},
-    {row_desc:"Hi row 2"},
-    {row_desc:"Hi row 3"}
+    {row_column: 1, row_desc:"Hi row 1"},
+    {row_column: 2, row_desc:"Hi row 2"},
+    {row_column: 3, row_desc:"Hi row 3"}
   ])
 
   const addNewRow = () => {
     const newRow = {
+      row_column: rows.length + 1,
       row_desc: "New Row"
     };
     setRows(rows => [...rows,newRow])
@@ -20,9 +21,18 @@ function App() {
 
   const addNewRowByUser = (content) => {
     const newRow = {
+      row_column: rows.length + 1,
       row_desc: content 
     };
     setRows(rows => [...rows,newRow])
+  }
+
+  const removeRow = (rowNumber) => {
+    let filterd = rows.filter(function (value) {
+      return value.row_column !== rowNumber
+    });
+    setRows(filterd)
+
   }
   
   return (
@@ -40,13 +50,14 @@ function App() {
         >
           Learn React
         </a>
-        {
-          rows.map(row => (
-            <SecondCom input={row.row_desc}/>
-          )
 
+            {
+          rows.map(row => (
+            <SecondCom input={row} deleteRow={removeRow}/>
           )
-        }<button onClick={addNewRow}>
+          )
+        }
+        <button onClick={addNewRow}>
           Add a new row 
         </button>
         <UserInputForm input={addNewRowByUser}/>
