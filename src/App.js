@@ -3,6 +3,12 @@ import './App.css';
 import SecondCom from './components/SecondCom';
 
 function App() {
+
+  const rows = [
+    {row:"Hi row 1"},
+    {row:"Hi row 2"}
+  ]
+  
   return (
     <div className="App">
       <header className="App-header">
@@ -18,7 +24,8 @@ function App() {
         >
           Learn React
         </a>
-        <SecondCom/>
+        <SecondCom input={rows[0].row}/>
+        <SecondCom input={rows[1].row}/>
       </header>
     </div>
   );

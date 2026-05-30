@@ -1,7 +1,7 @@
-function SecondCom() {
+function SecondCom(pros) {
         return (
         <p>
-        Hi    
+           {pros.input}
         </p>
         )
 }
