@@ -1,14 +1,22 @@
+import React, {useState} from 'react';
 import logo from './logo.svg';
 import './App.css';
 import SecondCom from './components/SecondCom';
 
 function App() {
 
-  const rows = [
+  const [rows, setRows] = useState ([
     {row_desc:"Hi row 1"},
     {row_desc:"Hi row 2"},
     {row_desc:"Hi row 3"}
-  ]
+  ])
+
+  const addNewRow = () => {
+    const newRow = {
+      row_desc: "New Row"
+    };
+    setRows(rows => [...rows,newRow])
+  }
   
   return (
     <div className="App">
@@ -31,7 +39,9 @@ function App() {
           )
 
           )
-        }
+        }<button onClick={addNewRow}>
+          Add a new row 
+        </button>
       </header>
     </div>
   );
