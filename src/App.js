@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import logo from './logo.svg';
 import './App.css';
 import SecondCom from './components/SecondCom';
-
+import UserInputForm from './components/UserInputForm';
 function App() {
 
   const [rows, setRows] = useState ([
@@ -14,6 +14,13 @@ function App() {
   const addNewRow = () => {
     const newRow = {
       row_desc: "New Row"
+    };
+    setRows(rows => [...rows,newRow])
+  }
+
+  const addNewRowByUser = (content) => {
+    const newRow = {
+      row_desc: content 
     };
     setRows(rows => [...rows,newRow])
   }
@@ -42,6 +49,7 @@ function App() {
         }<button onClick={addNewRow}>
           Add a new row 
         </button>
+        <UserInputForm input={addNewRowByUser}/>
       </header>
     </div>
   );
